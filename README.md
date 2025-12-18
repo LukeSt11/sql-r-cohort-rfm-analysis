@@ -22,3 +22,14 @@ The goal is to understand customer retention, revenue patterns over time, and cu
 ## Files
 - `01_setup_and_load_duckdb.R`: Loads data and initializes DuckDB
 - `02_cohort_retention.R`: Cohort analysis, revenue analysis, and RFM segmentation
+
+## Visuals
+
+### Cohort Retention Heatmap
+![Cohort Retention Heatmap](cohort_retention_heatmap.png)
+
+### Revenue by Cohort
+![Revenue by Cohort](revenue_by_cohort.png)
+
+### RFM Segments
+![RFM Segments](rfm_segments.png)
