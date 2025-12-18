@@ -26,10 +26,10 @@ The goal is to understand customer retention, revenue patterns over time, and cu
 ## Visuals
 
 ### Cohort Retention Heatmap
-![Cohort Retention Heatmap](cohort_retention_heatmap.png)
+![Cohort Retention Heatmap](cohort_retention_heatmap_v2.png)
 
 ### Revenue by Cohort
-![Revenue by Cohort](revenue_by_cohort.png)
+![Revenue by Cohort](revenue_by_cohort_v2.png)
 
 ### RFM Segments
-![RFM Segments](rfm_segments.png)
+![RFM Segments](rfm_segments_v2.png)
