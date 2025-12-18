@@ -98,6 +98,14 @@ retention_heatmap <- ggplot(heatmap_df_12, aes(x = month_number, y = cohort_labe
 
 print(retention_heatmap)
 
+ggsave(
+  filename = "outputs/cohort_retention_heatmap.png",
+  plot = retention_heatmap,
+  width = 10,
+  height = 6,
+  dpi = 300
+)
+
 # A) Revenue by cohort and month_number (SQL does the heavy lifting)
 cohort_revenue <- dbGetQuery(con, "
 WITH customer_first_order AS (
@@ -138,7 +146,8 @@ cohort_revenue_plot <- cohort_revenue %>%
 
 y_max <- quantile(cohort_revenue_plot$total_revenue, 0.99, na.rm = TRUE)
 
-ggplot(cohort_revenue_plot, aes(x = month_number, y = total_revenue, color = cohort_label)) +
+revenue_plot <- ggplot(cohort_revenue_plot,
+                       aes(x = month_number, y = total_revenue, color = cohort_label)) +
   geom_line() +
   scale_y_continuous(labels = scales::dollar_format()) +
   coord_cartesian(ylim = c(0, y_max)) +
@@ -150,6 +159,20 @@ ggplot(cohort_revenue_plot, aes(x = month_number, y = total_revenue, color = coh
     color = "Cohort"
   ) +
   theme_minimal()
+
+print(revenue_plot)
+
+dir.create("outputs", showWarnings = FALSE)
+
+ggsave(
+  filename = "outputs/revenue_by_cohort.png",
+  plot = revenue_plot,
+  width = 12,
+  height = 8,
+  dpi = 300
+)
+
+
 
 # -------------------------
 # Step: RFM Segmentation
@@ -207,7 +230,7 @@ rfm_segments <- rfm_scores %>%
     )
   )
 
-ggplot(rfm_segments, aes(x = segment)) +
+rfm_plot <- ggplot(rfm_segments, aes(x = segment)) +
   geom_bar(fill = "steelblue") +
   labs(
     title = "Customer Distribution by RFM Segment",
@@ -215,6 +238,18 @@ ggplot(rfm_segments, aes(x = segment)) +
     y = "Number of Customers"
   ) +
   theme_minimal()
+
+print(rfm_plot)
+
+dir.create("outputs", showWarnings = FALSE)
+
+ggsave(
+  filename = "outputs/rfm_segments.png",
+  plot = rfm_plot,
+  width = 8,
+  height = 5,
+  dpi = 300
+)
 
 # Close connection when done
 # dbDisconnect(con, shutdown = TRUE)
